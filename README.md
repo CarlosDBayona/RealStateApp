@@ -2,6 +2,7 @@
     - This project was build using the code first approach.
     - The script generated of the migrations can be found inside the Documents folder.
     - The UML of the Model can be found  inside the Documents folder.
+    - In order to work the angular project must use the 4200 port.
 
 ## Prerequisites
     - Dotnet Core SDK 3.1.
