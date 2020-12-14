@@ -1,0 +1,131 @@
+<form class="container mt-5 mb-5" #propertyForm="ngForm">
+  <h4>Tile *</h4>
+  <hr>
+  <input type="text" class="form-control" placeholder="Ex. 3Av..." aria-label="123456789"
+         aria-describedby="ownerPhone" [(ngModel)]="property.name" name="name" required>
+  <hr>
+  <h4 class="mt-2">General Information</h4>
+  <hr>
+  <section class="general-information row">
+    <div class="input-group mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="price">Price ($)</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. 1000.12" aria-label="$1000"
+             aria-describedby="price" [(ngModel)]="property.price" name="price" required>
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="owner">Owner</span>
+      </div>
+      <input type="text" class="form-control text-right" placeholder="Ex. Jhon" aria-label="Owner"
+             aria-describedby="owner" [(ngModel)]="property.ownerName" name="ownerPrice">
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="ownerPhone">Owner phone</span>
+      </div>
+      <input type="text" class="form-control text-right" placeholder="Ex. 123456789" aria-label="123456789"
+             aria-describedby="ownerPhone" [(ngModel)]="property.ownerPhone" name="ownerPhone">
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="area">Area (&#13217;)</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. 12" aria-label="12" aria-describedby="area"
+             [(ngModel)]="property.area" name="area" appOnlyNumber>
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="bathrooms">Number of Bathrooms</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. 2" aria-label="2"
+             aria-describedby="bathrooms" [(ngModel)]="property.bathrooms" name="bathrooms" appOnlyNumber>
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="rooms">Number of rooms</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. 2" aria-label="2" aria-describedby="rooms"
+             [(ngModel)]="property.rooms" name="rooms" appOnlyNumber>
+    </div>
+  </section>
+  <h4 class="mt-3">Description *</h4>
+  <hr>
+  <section class="description">
+    <div class="input-group">
+      <textarea class="form-control" aria-label="With textarea" placeholder="Ex. Beautiful house located in..."
+                [(ngModel)]="property.description" name="descripition" required></textarea>
+    </div>
+  </section>
+  <h4 class="mt-3">Characteristics</h4>
+  <hr>
+  <section class="characteristics">
+    <tabset>
+      <tab heading="Interior">
+        <div class="mt-3">
+          <div class="input-group">
+            <select class="custom-select" #interior>
+              <option selected>Choose...</option>
+              <option value="{{i}}"
+                      *ngFor="let characteristic of characteristics; let i = index">{{characteristic.name}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addCharacteristic(1, interior.value )">Add
+                Characteristic
+              </button>
+            </div>
+          </div>
+          <ul class="list">
+            <ng-container *ngFor="let characteristic of property.propertyCharacteristics; let i = index">
+              <li *ngIf="characteristic.characteristicTypeId==1">{{characteristic.characteristicName}} <i
+                class="fa fa-trash ml-1 delete-icon" (click)="deletePropertyCharacteristic(i)"></i></li>
+            </ng-container>
+          </ul>
+        </div>
+      </tab>
+      <tab heading="Exterior">
+        <div class="mt-3 border-right">
+          <div class="input-group">
+            <select class="custom-select" #exterior>
+              <option selected>Choose...</option>
+              <option value="{{i}}"
+                      *ngFor="let characteristic of characteristics; let i = index">{{characteristic.name}}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" (click)="addCharacteristic(2, exterior.value )">Add
+                Characteristic
+              </button>
+            </div>
+          </div>
+          <ul class="list">
+            <ng-container *ngFor="let characteristic of property.propertyCharacteristics; let i = index">
+              <li *ngIf="characteristic.characteristicTypeId==2">{{characteristic.characteristicName}} <i
+                class="fa fa-trash ml-1 delete-icon" (click)="deletePropertyCharacteristic(i)"></i></li>
+            </ng-container>
+          </ul>
+        </div>
+      </tab>
+    </tabset>
+  </section>
+  <h4 class="mt-3">Location</h4>
+  <hr>
+  <section class="location row">
+    <div class="input-group mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="latitude">Latitude</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. 30.123" aria-label="30"
+             aria-describedby="latitude" [(ngModel)]="property.latitude" name="latitude">
+    </div>
+    <div class="input-group mb-3 mb-3 col-sm-12 col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="longitude">Longitude</span>
+      </div>
+      <input type="number" class="form-control text-right" placeholder="Ex. -87.123" aria-label="-87"
+             aria-describedby="longitude" [(ngModel)]="property.longitude" name="longitude">
+    </div>
+  </section>
+  <button class="btn btn-block btn-success" (click)="updateProperty()" [disabled]="propertyForm.invalid">Update property
+  </button>
+</form>

@@ -1,0 +1,17 @@
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.list{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.delete-icon{
+  cursor: pointer;
+}
+ul{
+  margin-top: 1rem;
+}
