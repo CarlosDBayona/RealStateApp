@@ -11,7 +11,7 @@
     - Install angular project dependencies with npm install.
     
 ## Run
-    - Update ConnectionString of SQL Server in the  appsettings.json
+    - Update ConnectionString of SQL Server in the  appsettings.Development.json.
     - Run "dotnet ef database update".
     - Run the dotnet application using ether "dotnet run" or "dotnet watch run".
     - Run the angular application using the "ng serve" command.
